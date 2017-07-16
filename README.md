@@ -5,4 +5,4 @@ This approach requires installation of vendor's VISA library implementation on b
 
 If developed application assumed to work with various third-party VISA implementations and no VISA libraries were installed it would be nice if it could provide only a part of the functionality or report VISA library neccesarity.
 
-This is simple example of application bypassing this limitations using unofficial NuGet VISA.NET Shared Components distribution.
+This is simple example of application bypassing those limitations using unofficial NuGet VISA.NET Shared Components distribution [Kelary.Ivi.Visa](https://www.nuget.org/packages/Kelary.Ivi.Visa/).
