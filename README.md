@@ -11,9 +11,9 @@ This is simple example of application bypassing those limitations using unoffici
 
 Following third-party VISA.NET implementations available:
 
-| Implementation                    | VISA.NET Shared Components Version |
-| --------------------------------- | --- |
-| Keysight IO Libraries Suite 17.2  | 5.6 |
-| Keysight IO Libraries Suite 18    | 5.8 |
-| NI-VISA 15.0                      | 5.6 |
-| Kikusui KI-VISA 5.5               | 5.5 |
+| Implementation                                                  | VISA.NET Shared Components Version |
+| ---------------------------------------------------------------------------------------------- | --- |
+| [Keysight IO Libraries Suite 2018(18)](https://www.keysight.com/main/software.jspx?id=2175637) | 5.8 |
+| [Keysight IO Libraries Suite 17.2](https://www.keysight.com/main/software.jspx?id=2784293)     | 5.6 |
+| [NI-VISA 15.0,17.5](http://www.ni.com/download/ni-visa-17.5/7220/en/)                          | 5.6 |
+| [Kikusui KI-VISA 5.5](https://www.kikusui.co.jp/en/download/en/?fn=com_kivisa)                 | 5.5 |
