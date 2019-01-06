@@ -29,10 +29,15 @@ namespace IviVisaNetSample
         {
             try
             {
-                var session = GlobalResourceManager.Open("TCPIP:localhost::inst0::INSTR") as IMessageBasedFormattedIO;
-                session.WriteLine("*IDN?");
-                var idn = session.ReadLine();
-                Console.WriteLine(string.Format("Connected to {0}", idn));
+                using (var res = GlobalResourceManager.Open("TCPIP:localhost::inst0::INSTR"))
+                {
+                    if (res is IMessageBasedFormattedIO session)
+                    {
+                        session.WriteLine("*IDN?");
+                        var idn = session.ReadLine();
+                        Console.WriteLine(string.Format("Connected to {0}", idn));
+                    }
+                }
             }
             catch (TypeInitializationException ex)
             {
