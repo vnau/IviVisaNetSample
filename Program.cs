@@ -43,7 +43,8 @@ namespace IviVisaNetSample
             {
                 if (ex.InnerException != null && ex.InnerException is DllNotFoundException)
                 {
-                    Console.WriteLine("VISA implementation compatible with VISA.NET Shared Components {0} not found. Please install corresponding vendor-specific VISA implementation first.", GlobalResourceManager.ImplementationVersion);
+                    var VisaNetSharedComponentsVersion = typeof(GlobalResourceManager).Assembly.GetName().Version.ToString();
+                    Console.WriteLine("VISA implementation compatible with VISA.NET Shared Components {0} not found. Please install corresponding vendor-specific VISA implementation first.", VisaNetSharedComponentsVersion);
                 }
             }
             catch (Exception ex)

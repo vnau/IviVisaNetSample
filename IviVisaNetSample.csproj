@@ -35,17 +35,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ivi.Visa, Version=5.8.0.0, Culture=neutral, PublicKeyToken=a128c98f1d7717c1, processorArchitecture=MSIL">
-      <HintPath>..\packages\Kelary.Ivi.Visa.5.8.908\lib\Ivi.Visa.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>packages\Kelary.Ivi.Visa.5.8.908\lib\Ivi.Visa.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
