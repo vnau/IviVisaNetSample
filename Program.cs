@@ -4,27 +4,8 @@ using System.Diagnostics;
 
 namespace IviVisaNetSample
 {
-    class Program
+    static class Program
     {
-        /// <summary>
-        /// Suppress DllNotFoundException exception in Ivi.Visa destructor.
-        /// </summary>
-        private static void GetReadyToDie()
-        {
-            System.AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
-            {
-                Exception ex = e.ExceptionObject as Exception;
-                var dllNotFoundException = ex as DllNotFoundException;
-                if (dllNotFoundException != null && ex.Source == "Ivi.Visa")
-                {
-                    // Dead programs tell no lies
-                    Process.GetCurrentProcess().Kill();
-                }
-
-                throw ex;
-            };
-        }
-
         static void Main(string[] args)
         {
             try
@@ -35,7 +16,7 @@ namespace IviVisaNetSample
                     {
                         session.WriteLine("*IDN?");
                         var idn = session.ReadLine();
-                        Console.WriteLine(string.Format("Connected to {0}", idn));
+                        Console.WriteLine("Connected to {0}", idn);
                     }
                 }
             }
@@ -52,7 +33,21 @@ namespace IviVisaNetSample
                 Console.WriteLine(ex.Message);
             }
 
-            GetReadyToDie();
+            // suppress DllNotFoundException exception in Ivi.Visa dispose
+            AppDomain.CurrentDomain.UnhandledException += UnhandledExceptionEventHandler;
+        }
+
+        // suppress DllNotFoundException exception in Ivi.Visa dispose
+        private static void UnhandledExceptionEventHandler(object sender, UnhandledExceptionEventArgs e)
+        {
+            var ex = e.ExceptionObject as Exception;
+            if (ex is DllNotFoundException dllNotFoundException)
+            {
+                // Dead programs tell no lies
+                Process.GetCurrentProcess().Kill();
+            }
+
+            throw ex;
         }
     }
 }
