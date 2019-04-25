@@ -1,9 +1,11 @@
 # VISA.NET example #
 
-In traditional approach [VISA.NET Shared Components](http://www.ivifoundation.org/shared_components/) distributed only as part of a vendor's installer for its VISA implementation.
-This approach requires installation of vendor's VISA library implementation on build server even if communication with instruments is not needeed on this stage.
+[![Build Status on Travis-CI](https://api.travis-ci.org/vnau/IviVisaNetSample.svg?branch=master)](https://travis-ci.org/vnau/IviVisaNetSample)
 
-If developed application assumed to work with various third-party VISA implementations and no VISA libraries were installed it would be nice if it could provide only a part of the functionality or report VISA library neccesarity.
+In traditional approach [VISA.NET Shared Components](http://www.ivifoundation.org/shared_components/) distributed only as part of a vendor's installer for its VISA implementation.
+This approach suppose installation of vendor's VISA library implementation on CI server environment even if communication with instruments is not required on this stage.
+
+If developed application assumed to work with various third-party VISA implementations and no VISA libraries were installed it would be nice if it could provide only a part of the functionality or report VISA library necessity.
 
 This is simple example of application bypassing those limitations using unofficial NuGet VISA.NET Shared Components distribution [Kelary.Ivi.Visa](https://www.nuget.org/packages/Kelary.Ivi.Visa/).
 
