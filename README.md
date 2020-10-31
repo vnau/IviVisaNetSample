@@ -15,6 +15,7 @@ Following third-party VISA.NET implementations available:
 
 | Implementation                                                   | VISA.NET Shared Components Version |
 | ---------------------------------------------------------------------------------------------- | ---- |
+| [Rohde & Schwarz VISA 5.12.2 for Windows](https://www.rohde-schwarz.com/us/applications/r-s-visa-application-note_56280-148812.html) | 5.11 |
 | [Keysight IO Libraries Suite 2019](https://www.keysight.com/main/software.jspx?id=2175637)     | 5.11 |
 | [Keysight IO Libraries Suite 2018](https://www.keysight.com/main/software.jspx?id=2175637)     | 5.8  |
 | [Keysight IO Libraries Suite 17.2](https://www.keysight.com/main/software.jspx?id=2784293)     | 5.6  |
