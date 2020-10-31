@@ -5,5 +5,5 @@ mono:
 install:
   - nuget restore ./IviVisaNetSample.sln
 script:
-  - xbuild ./IviVisaNetSample.sln
+  - msbuild ./IviVisaNetSample.sln
 #  - mono ./bin/Debug/IviVisaNetSample.exe
