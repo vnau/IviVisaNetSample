@@ -1,6 +1,6 @@
 # VISA.NET example #
 
-[![Build Status on Travis-CI](https://api.travis-ci.org/vnau/IviVisaNetSample.svg?branch=master)](https://travis-ci.org/vnau/IviVisaNetSample) [![Build status](https://ci.appveyor.com/api/projects/status/dag3r35u0sn1sci3?svg=true)](https://ci.appveyor.com/project/vnau/IviVisaNetSample)
+[![Build Status Github](https://github.com/vnau/IviVisaNetSample/actions/workflows/build.yml/badge.svg)](https://github.com/vnau/IviVisaNetSample/actions/workflows/build.yml) [![Build Status AppVeyor](https://ci.appveyor.com/api/projects/status/dag3r35u0sn1sci3?svg=true)](https://ci.appveyor.com/project/vnau/IviVisaNetSample)
 
 In traditional approach [VISA.NET Shared Components](http://www.ivifoundation.org/shared_components/) distributed only as part of a vendor's installer for its VISA implementation.
 This approach suppose installation of vendor's VISA library implementation on CI server environment even if communication with instruments is not required on this stage.
@@ -17,6 +17,8 @@ Below is a non-exhausting list of vendor-specific VISA implementations with VISA
 
 | Implementation | Size | VISA.NET Shared Components Version |
 | --- | ---- | ---- |
+| [Rohde & Schwarz VISA 7.2.3 for Windows](https://scdn.rohde-schwarz.com/ur/pws/dl_downloads/dl_application/application_notes/1dc02___rs_v/RS_VISA_Setup_Win_7_2_3.exe)| 63 MB | 7.2 |
+| [NI-VISA 2023 Q4](https://www.ni.com/en/support/downloads/drivers/download.ni-visa.html)| 1.41 GB | 7.2 |
 | [Rohde & Schwarz VISA 5.12.3 for Windows](https://www.rohde-schwarz.com/us/applications/r-s-visa-application-note_56280-148812.html) | 59 MB | 5.11 |
 | [Keysight IO Libraries Suite 2019](https://www.keysight.com/main/software.jspx?id=2175637) | 251 MB | 5.11 |
 | [NI-VISA 20.0](https://www.ni.com/ru-ru/support/downloads/drivers/download.ni-visa.html#346210)| 1.16 GB | 5.11 |
