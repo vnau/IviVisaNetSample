@@ -9,41 +9,46 @@ namespace IviVisaNetSample
     {
         static void Main()
         {
-            // Get a VISA.NET library version.
-            Version VisaNetSharedComponentsVersion = typeof(GlobalResourceManager).Assembly.GetName().Version;
-            Console.WriteLine("VISA.NET Shared Components version {0}.", VisaNetSharedComponentsVersion);
+            // Get VISA.NET Shared Components version.
+            Version visaNetSharedComponentsVersion = typeof(GlobalResourceManager).Assembly.GetName().Version;
+            Console.WriteLine($"VISA.NET Shared Components version {visaNetSharedComponentsVersion}.");
 
             // Check whether VISA Shared Components is installed before using VISA.NET.
             // If access VISA.NET without the visaConfMgr.dll library, an unhandled exception will
             // be thrown during termination process due to a bug in the implementation of the
             // VISA.NET Shared Components, andthe application will crash.
-            FileVersionInfo VisaSharedComponentsInfo;
             try
             {
                 // Get an available version of the VISA Shared Components.
-                VisaSharedComponentsInfo = FileVersionInfo.GetVersionInfo(Path.Combine(Environment.SystemDirectory, "visaConfMgr.dll"));
-                Console.WriteLine("VISA Shared Components version {0} detected.", VisaSharedComponentsInfo.ProductVersion);
+                FileVersionInfo visaSharedComponentsInfo = FileVersionInfo.GetVersionInfo(Path.Combine(Environment.SystemDirectory, "visaConfMgr.dll"));
+                Console.WriteLine($"VISA Shared Components version {visaSharedComponentsInfo.ProductVersion} detected.");
             }
             catch (FileNotFoundException)
             {
-                Console.WriteLine("VISA implementation compatible with VISA.NET Shared Components {0} not found. Please install corresponding vendor-specific VISA implementation first.", VisaNetSharedComponentsVersion);
+                Console.WriteLine($"VISA implementation compatible with VISA.NET Shared Components {visaNetSharedComponentsVersion} not found. Please install corresponding vendor-specific VISA implementation first.");
                 return;
             }
+
+#if NET5_0_OR_GREATER
+            // Preloading installed VISA implementation assemblies for NET 5+
+            GacLoader.LoadInstalledVisaAssemblies();
+#endif
 
             try
             {
                 // Connect to the instrument.
-                using (IVisaSession res = GlobalResourceManager.Open("TCPIP0::localhost::5025::SOCKET", AccessModes.ExclusiveLock, 2000))
+                var resourceName = "TCPIP::localhost::5025::SOCKET";
+                using (IVisaSession resource = GlobalResourceManager.Open(resourceName, AccessModes.ExclusiveLock, 2000))
                 {
-                    if (res is IMessageBasedSession session)
+                    if (resource is IMessageBasedSession session)
                     {
                         // Ensure termination character is enabled as here in example we use a SOCKET connection.
                         session.TerminationCharacterEnabled = true;
 
                         // Request information about an instrument.
                         session.FormattedIO.WriteLine("*IDN?");
-                        string idn = session.FormattedIO.ReadLine();
-                        Console.WriteLine("Instrument information: {0}", idn);
+                        string instrumentInfo = session.FormattedIO.ReadLine();
+                        Console.WriteLine($"Instrument information: {instrumentInfo}");
                     }
                     else
                     {
@@ -51,28 +56,27 @@ namespace IviVisaNetSample
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                if (ex is TypeInitializationException && ex.InnerException is DllNotFoundException)
+                if (exception is TypeInitializationException && exception.InnerException is DllNotFoundException)
                 {
                     // VISA Shared Components is not installed.
-                    Console.WriteLine("VISA implementation compatible with VISA.NET Shared Components {0} not found. Please install corresponding vendor-specific VISA implementation first.", VisaNetSharedComponentsVersion);
+                    Console.WriteLine($"VISA implementation compatible with VISA.NET Shared Components {visaNetSharedComponentsVersion} not found. Please install corresponding vendor-specific VISA implementation first.");
                 }
-                else if (ex is VisaException
-                    && ex.Message == "No vendor-specific VISA .NET implementation is installed.")
+                else if (exception is VisaException && exception.Message == "No vendor-specific VISA .NET implementation is installed.")
                 {
                     // Vendor-specific VISA.NET implementation is not available.
-                    Console.WriteLine("VISA implementation compatible with VISA.NET Shared Components {0} not found. Please install corresponding vendor-specific VISA implementation first.", VisaNetSharedComponentsVersion);
+                    Console.WriteLine($"VISA implementation compatible with VISA.NET Shared Components {visaNetSharedComponentsVersion} not found. Please install corresponding vendor-specific VISA implementation first.");
                 }
-                else if (ex is EntryPointNotFoundException)
+                else if (exception is EntryPointNotFoundException)
                 {
-                    // Installed VISA Shared Components is not compatible with VISA.NET Shared Components
-                    Console.WriteLine("Installed VISA Shared Components version {0} does not support VISA.NET {1}. Please upgrade VISA implementation.", VisaSharedComponentsInfo.ProductVersion, VisaNetSharedComponentsVersion);
+                    // Installed VISA Shared Components are not compatible with VISA.NET Shared Components.
+                    Console.WriteLine($"Installed VISA Shared Components version {visaNetSharedComponentsVersion} does not support VISA.NET. Please upgrade VISA implementation.");
                 }
                 else
                 {
                     // Handle remaining errors.
-                    Console.WriteLine("Exception: {0}", ex.Message);
+                    Console.WriteLine($"Exception: {exception.Message}");
                 }
             }
 
