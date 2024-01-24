@@ -2,7 +2,7 @@
 
 [![Build Status Github](https://github.com/vnau/IviVisaNetSample/actions/workflows/build.yml/badge.svg)](https://github.com/vnau/IviVisaNetSample/actions/workflows/build.yml) [![Build Status AppVeyor](https://ci.appveyor.com/api/projects/status/dag3r35u0sn1sci3?svg=true)](https://ci.appveyor.com/project/vnau/IviVisaNetSample)
 
-In the traditional approach, [VISA.NET Shared Components](http://www.ivifoundation.org/shared_components/) are distributed solely as part of a vendor's installer for its VISA implementation.
+In the traditional approach, [VISA.NET Shared Components](https://www.ivifoundation.org/Shared-Components/default.html#visa-and-visanet-shared-components) are distributed solely as part of a vendor's installer for its VISA implementation.
 This approach necessitates the installation of the vendor's VISA library implementation on the CI server environment, even if communication with instruments is not required at this stage.
 
 If a developed application is intended to work with various third-party VISA implementations, and no VISA libraries are installed, it would be beneficial if it could provide only a part of the functionality or report the necessity of the VISA library.
