@@ -28,6 +28,8 @@ Basic functions have been tested with Rohde & Schwarz and Keysight implementatio
 
 We look forward to the IVI Foundation moving the VISA.NET library from the .NET Framework to the .Net Standard, which will allow VISA.NET to become not only interchangeable, but also cross-platform.
 
+IVI Foundation announces in [VPP-4.3.6](https://www.ivifoundation.org/downloads/VISA/vpp436_2024-02-08.pdf) that the *VISA.NET* shared components version 7.3 and later will be available in both *.NET Framework* versions that target *.NET 4.5*, and *.NET* versions that target *.NET 6.0* or after.
+
 ### Existing VISA.NET implementations ###
 
 In most cases, an application built with VISA.NET Shared Components version 5.5 will work with later implementations of Shared Components.
